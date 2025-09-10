@@ -16,7 +16,7 @@ export class UserModel {
   @Prop()
   phone: number;
 
-  @Prop({ required: true })
+  @Prop()
   firstName: string;
 
   @Prop()
@@ -25,7 +25,7 @@ export class UserModel {
   @Prop()
   age: number;
 
-  @Prop({ required: true })
+  @Prop()
   gender: string;
 
   @Prop()

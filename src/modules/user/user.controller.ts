@@ -1,5 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+
 import { UserService } from './user.service';
+import { LoginDto } from './dto/login-request.dto';
 
 @Controller({
   path: 'users',
@@ -21,6 +23,24 @@ export class UserController {
         responseCode: 0,
         message: 'Error',
         error: error.message || 'Failed to get all users',
+      };
+    }
+  }
+
+  @Post('login')
+  public async login(@Body() body: LoginDto) {
+    try {
+      const res = await this.userService.loginUsers(body);
+      return {
+        responseCode: 1,
+        message: 'Success',
+        data: res,
+      };
+    } catch (error) {
+      return {
+        responseCode: 0,
+        message: 'Error',
+        error: error.message || 'Failed to login user',
       };
     }
   }
